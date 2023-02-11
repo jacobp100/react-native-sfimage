@@ -6,6 +6,7 @@
 @implementation RCTSFImage {
   __weak RCTBridge *_bridge;
   BOOL _needsUpdate;
+  BOOL _hasTintColor;
 }
 
 - (instancetype)initWithBridge:(RCTBridge *)bridge
@@ -51,13 +52,13 @@
                              withConfiguration:configuration];
 
     if (_multiColor) {
-      if (self.tintColor != nil) {
+      if (_hasTintColor) {
         image = [image imageWithTintColor:self.tintColor
                             renderingMode:UIImageRenderingModeAlwaysOriginal];
       } else {
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
       }
-    } else if (self.tintColor != nil) {
+    } else if (_hasTintColor) {
       image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
 
@@ -66,6 +67,13 @@
     [_bridge.uiManager setSize:image.size
                        forView:self];
   }
+}
+
+- (void)setTintColor:(UIColor *)tintColor
+{
+  [super setTintColor:tintColor];
+  _needsUpdate = YES;
+  _hasTintColor = YES;
 }
 
 - (void)setMultiColor:(BOOL)multiColor
