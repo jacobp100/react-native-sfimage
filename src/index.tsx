@@ -1,26 +1,50 @@
 import {
+  ColorValue,
+  ImageStyle,
   requireNativeComponent,
-  UIManager,
-  Platform,
-  ViewStyle,
+  StyleProp,
+  ViewProps,
 } from 'react-native';
 
-const LINKING_ERROR =
-  `The package 'react-native-sfimage' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo Go\n';
+export type Weight =
+  | 'ultralight'
+  | 'light'
+  | 'thin'
+  | 'regular'
+  | 'medium'
+  | 'semibold'
+  | 'bold'
+  | 'heavy';
 
-type SfimageProps = {
-  color: string;
-  style: ViewStyle;
+export type Scale = 'small' | 'medium' | 'large';
+
+export type ResizeMode =
+  | 'scale-to-fill'
+  | 'scale-aspect-fit'
+  | 'scale-aspect-fill'
+  | 'redraw'
+  | 'center'
+  | 'top'
+  | 'bottom'
+  | 'left'
+  | 'right'
+  | 'top-left'
+  | 'top-right'
+  | 'bottom-left'
+  | 'bottom-right'
+  | 'cover'
+  | 'contain'
+  | 'stretch';
+
+export type Props = Pick<ViewProps, 'onLayout'> & {
+  systemName: string;
+  tintColor?: ColorValue;
+  style?: StyleProp<ImageStyle>;
+  size?: number;
+  resizeMode?: ResizeMode;
+  weight?: Weight;
+  scale?: Scale;
+  multiColor?: boolean;
 };
 
-const ComponentName = 'SfimageView';
-
-export const SfimageView =
-  UIManager.getViewManagerConfig(ComponentName) != null
-    ? requireNativeComponent<SfimageProps>(ComponentName)
-    : () => {
-        throw new Error(LINKING_ERROR);
-      };
+export default requireNativeComponent<Props>('RCTSFImage');
