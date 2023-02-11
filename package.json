@@ -1,5 +1,5 @@
 {
-  "name": "react-native-sfimage",
+  "name": "@jacobp100/react-native-sfimage",
   "version": "0.1.0",
   "description": "test",
   "main": "lib/commonjs/index",
@@ -49,7 +49,8 @@
   },
   "homepage": "https://github.com/jacobp100/react-native-sfimage#readme",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "devDependencies": {
     "@evilmartians/lefthook": "^1.2.2",

@@ -9,13 +9,13 @@ Use SFSymbols in react native. Requires iOS 13+.
 ## Installation
 
 ```sh
-npm install react-native-sfimage
+npm install @jacobp100/react-native-sfimage
 ```
 
 ## Usage
 
 ```js
-import SFImage from 'react-native-sfimage';
+import SFImage from "@jacobp100/react-native-sfimage";
 
 <SFImage
   systemName="thermometer.sun.fill"
